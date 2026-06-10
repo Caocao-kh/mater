@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ product.title }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='front/styles.css') }}">
+</head>
+
+<body class="bg-soft">
+
+  {% include 'front/share/navbar.html' %}
+
+  <main class="container py-5">
+
+    <nav class="mb-4 small text-muted" aria-label="Breadcrumb">
+      <a class="link-teal fw-bold text-capitalize text-decoration-none" href="/">Home</a>
+      <span class="mx-2">/</span>
+      <a class="link-teal fw-bold text-capitalize text-decoration-none" href="/products">{{ product.category }}</a>
+      <span class="mx-2">/</span>
+      <span class="text-truncate d-inline-block align-bottom" style="max-width: 200px;">{{ product.title }}</span>
+    </nav>
+
+    <section class="product-showcase premium-showcase mb-5">
+      <div class="row g-4 g-xl-5">
+
+        <div class="col-lg-7">
+          <div class="product-gallery bg-light rounded p-4 d-flex align-items-center justify-content-center"
+            style="min-height: 400px; height: 100%;">
+            <img class="img-fluid" src="{{ product.image }}" alt="{{ product.title }}"
+              style="max-height: 380px; object-fit: contain;">
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="purchase-panel d-flex flex-column h-100">
+            <p class="eyebrow text-capitalize mb-2">{{ product.category }}</p>
+            <h1 class="h2 fw-bold text-dark mb-3">{{ product.title }}</h1>
+
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+              <span class="badge bg-teal p-2">★ {{ product.rating.rate }}</span>
+              <span class="text-muted small">({{ product.rating.count }} reviews)</span>
+              <span class="badge bg-success-subtle text-success border border-success-subtle">In Stock</span>
+            </div>
+
+            <p class="text-muted my-3" style="line-height: 1.6;">{{ product.description }}</p>
+
+            <div class="my-4">
+              <p class="price fs-1 fw-bold text-teal mb-0">${{ product.price }}</p>
+            </div>
+
+            <div class="d-grid gap-2 mt-auto pt-3">
+              <form action="/add-to-cart/{{ product.id }}" method="POST">
+                <div class="mb-4" style="max-width: 120px;">
+                  <input type="number" name="quantity" value="1" class="form-control">
+                </div>
+
+                <div class="d-grid gap-2 mt-auto pt-2">
+                  <button type="submit" name="action" value="add_to_cart" id="addCartBtn"
+                    class="btn btn-teal btn-lg py-2.5 fw-bold">
+                    Cart
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="trust-grid mt-4 border-top pt-3 d-flex justify-content-between text-center text-muted small">
+              <div>
+                <strong class="d-block text-dark mb-0">Free shipping</strong>
+                <span>Orders over $50</span>
+              </div>
+              <div>
+                <strong class="d-block text-dark mb-0">Easy Returns</strong>
+                <span>30-day window</span>
+              </div>
+              <div>
+                <strong class="d-block text-dark mb-0">Secure Flow</strong>
+                <span>SSL Encrypted</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+        <div>
+          <p class="eyebrow mb-1">Related products</p>
+          <h2 class="fw-bold mb-0 text-capitalize">More from {{ product.category }}</h2>
+        </div>
+        <a class="link-teal fw-bold text-decoration-none" href="/products">All products</a>
+      </div>
+
+      <div class="row g-4">
+        {% if related_products %}
+        {% for rp in related_products %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card product-card border-0 shadow-sm h-100 transition-up">
+
+            <div class="p-3 bg-white d-flex align-items-center justify-content-center" style="height: 200px;">
+              <img src="{{ rp.image }}" class="card-img-top img-fluid" alt="{{ rp.title }}"
+                style="max-height: 100%; width: auto; object-fit: contain;">
+            </div>
+
+            <div class="card-body d-flex flex-column p-3">
+              <p class="product-meta text-muted small text-uppercase mb-1 text-truncate" style="max-width: 100%;">{{
+                rp.title }}</p>
+
+              <h3 class="h6 fw-bold text-dark mb-2 text-truncate-2"
+                style="height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.95rem; line-height: 1.4;">
+                {{ rp.description }}
+              </h3>
+
+              <div class="mt-auto pt-2">
+                <p class="price fw-bold h5 text-teal mb-3">${{ rp.price }}</p>
+                <a class="btn btn-teal w-100 py-2 fw-semibold small" href="/product/{{ rp.id }}">View product</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-12">
+          <div class="p-4 bg-white border text-center rounded text-muted small">
+            No other related items found in this category.
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+
+  </main>
+
+</body>
+{% include 'front/share/footer.html' %}
+<script>
+
+  document.getElementById('addCartBtn')
+    .addEventListener('click', function () {
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Added To Cart',
+        text: 'Product added successfully!',
+        confirmButtonColor: '#0d9488'
+      });
+
+    });
+  document.querySelector('[value="buy_now"]')
+    .addEventListener('click', function (e) {
+
+      e.preventDefault();
+
+      Swal.fire({
+        title: 'Proceed To Checkout?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Checkout',
+        confirmButtonColor: '#0d9488'
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+
+          window.location = '/checkout';
+        }
+
+      });
+
+    });
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</html>

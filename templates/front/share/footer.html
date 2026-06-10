@@ -1,0 +1,205 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='front/footer.css') }}">
+<footer class="site-footer mt-auto py-5">
+
+    <!-- TOP FOOTER -->
+    <div class="footer-top">
+        <div class="container">
+            <div class="row g-5">
+
+                <!-- BRAND DESCRIPTION -->
+                <div class="col-lg-4 col-md-6">
+                    <a class="footer-brand font-weight-bold mb-3 d-inline-block" href="{{ url_for('home') }}">
+                        COMPUTER <span class="text-success">STORE</span>
+                    </a>
+
+                    <p class="footer-text text-muted mb-4">
+                        Your premium destination for advanced laptops,
+                        top-tier gaming systems, specialized components,
+                        and cutting-edge tech accessories.
+                        Experience visual power, professional security,
+                        and top-tier support.
+                    </p>
+
+                    <!-- PAYMENT METHODS -->
+                    <div class="payment-methods gap-2 d-flex align-items-center">
+                        <span class="badge bg-secondary-subtle text-dark border p-2 px-3">
+                            <i class="bi bi-credit-card me-1"></i> Visa
+                        </span>
+
+                        <span class="badge bg-secondary-subtle text-dark border p-2 px-3">
+                            <i class="bi bi-credit-card-2-front me-1"></i> Mastercard
+                        </span>
+
+                        <span class="badge bg-secondary-subtle text-dark border p-2 px-3">
+                            <i class="bi bi-paypal me-1"></i> PayPal
+                        </span>
+                    </div>
+                </div>
+
+                <!-- SHOP -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h5 class="footer-section-title text-uppercase fw-bold mb-3">
+                        Shop
+                    </h5>
+
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2">
+                            <a href="{{ url_for('products') }}" class="text-decoration-none">
+                                All Products
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="{{ url_for('products') }}" class="text-decoration-none">
+                                Detail Product
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ACCOUNT -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h5 class="footer-section-title text-uppercase fw-bold mb-3">
+                        Account
+                    </h5>
+
+                    <ul class="list-styled footer-links">
+
+                        <li class="mb-2">
+                            <a href="{{ url_for('login') }}" class="text-decoration-none">
+                                Login
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="{{ url_for('create_user') }}" class="text-decoration-none">
+                                Register
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="{{ url_for('account') }}" class="text-decoration-none">
+                                My Account
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="{{ url_for('cart') }}" class="text-decoration-none">
+                                My Cart
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <!-- CONTACT -->
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-section-title text-uppercase fw-bold mb-3">
+                        Contact Support
+                    </h5>
+
+                    <div class="footer-contact text-muted">
+
+                        <div class="contact-item d-flex align-items-center mb-3">
+                            <i class="bi bi-envelope-fill text-success fs-5 me-3"></i>
+                            <span>support@computerstore.com</span>
+                        </div>
+
+                        <div class="contact-item d-flex align-items-center mb-3">
+                            <i class="bi bi-telephone-fill text-success fs-5 me-3"></i>
+                            <span>+1 (800) 555-TECH</span>
+                        </div>
+
+                        <div class="contact-item d-flex align-items-center mb-3">
+                            <i class="bi bi-geo-alt-fill text-success fs-5 me-3"></i>
+                            <span>Silicon Valley, CA, USA</span>
+                        </div>
+
+                        <div class="contact-item d-flex align-items-center">
+                            <i class="bi bi-clock-fill text-success fs-5 me-3"></i>
+                            <span>Available 24/7 • Fast Dispatch</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom border-top mt-5 pt-4">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+
+                <p class="mb-0 text-muted">
+                    &copy; 2026 COMPUTER STORE.
+                    Designed with premium responsive layout.
+                    All rights reserved.
+                </p>
+
+                <div class="footer-legal-links">
+                    <a href="#" class="text-decoration-none text-muted me-3">
+                        Privacy Policy
+                    </a>
+
+                    <a href="#" class="text-decoration-none text-muted me-3">
+                        Terms of Service
+                    </a>
+
+                    <a href="#" class="text-decoration-none text-muted">
+                        Support
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <button id="backToTop" class="btn btn-success rounded-circle">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+    <!-- <script> -->
+
+    window.addEventListener('load', () => {
+
+    Swal.fire({
+    icon: 'success',
+    title: 'Welcome',
+    text: 'Enjoy shopping at COMPUTER STORE',
+    timer: 1800,
+    showConfirmButton: false
+    });
+
+    });
+    const btn =
+    document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+
+    if (window.scrollY > 300) {
+
+    btn.style.display = 'block';
+
+    } else {
+
+    btn.style.display = 'none';
+    }
+    });
+
+    btn.addEventListener('click', () => {
+
+    window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+    });
+
+    });
+
+    </script>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->

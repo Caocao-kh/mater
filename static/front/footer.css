@@ -1,0 +1,243 @@
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #111827
+    );
+
+    color: white;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* Animated background */
+
+.site-footer::before {
+
+    content: '';
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    background:
+    rgba(20,184,166,.05);
+
+    border-radius: 50%;
+
+    top: -200px;
+    right: -150px;
+
+    animation: rotateFooter 20s linear infinite;
+}
+
+@keyframes rotateFooter {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.footer-brand {
+
+    font-size: 1.8rem;
+
+    color: white;
+
+    text-decoration: none;
+
+    transition: .4s;
+}
+
+.footer-brand:hover {
+
+    color: #14b8a6;
+
+    transform: translateY(-3px);
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.footer-links a {
+
+    color: #cbd5e1;
+
+    transition: .3s;
+
+    position: relative;
+}
+
+.footer-links a:hover {
+
+    color: #14b8a6;
+
+    padding-left: 8px;
+}
+
+.footer-links a::before {
+
+    content: '→';
+
+    opacity: 0;
+
+    margin-right: 5px;
+
+    transition: .3s;
+}
+
+.footer-links a:hover::before {
+
+    opacity: 1;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-item {
+
+    transition: .3s;
+}
+
+.contact-item:hover {
+
+    transform: translateX(8px);
+}
+
+/* =========================
+   PAYMENT BADGES
+========================= */
+
+.payment-methods .badge {
+
+    transition: .3s;
+}
+
+.payment-methods .badge:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.2);
+}
+
+/* =========================
+   SECTION TITLES
+========================= */
+
+.footer-section-title {
+
+    color: white;
+
+    letter-spacing: 1px;
+}
+
+/* =========================
+   COPYRIGHT
+========================= */
+
+.footer-bottom {
+
+    border-color:
+    rgba(255,255,255,.1) !important;
+}
+
+/* =========================
+   LEGAL LINKS
+========================= */
+
+.footer-legal-links a {
+
+    transition: .3s;
+}
+
+.footer-legal-links a:hover {
+
+    color: #14b8a6 !important;
+}
+
+/* =========================
+   FADE IN
+========================= */
+
+.site-footer {
+
+    animation: footerFade 1s ease;
+}
+
+@keyframes footerFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}.social-icons a {
+
+    width: 42px;
+    height: 42px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.08);
+
+    color: white;
+
+    margin-right: 10px;
+
+    transition: .3s;
+}
+
+.social-icons a:hover {
+
+    background: #14b8a6;
+
+    transform: translateY(-5px);
+}
+
+#backToTop {
+
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 55px;
+    height: 55px;
+
+    display: none;
+
+    z-index: 9999;
+}

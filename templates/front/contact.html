@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Dynamic Flask Asset Routing Hook -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='front/style.css') }}">
+</head>
+
+<body class="bg-soft">
+
+  {% include 'front/share/navbar.html' %}
+
+  <main>
+
+    <!-- Main Workspace Section -->
+    <section class="container py-5">
+      <div class="row g-5">
+
+        <!-- Column 1: Info Directory -->
+        <aside class="col-lg-4 order-lg-last">
+          <div class="d-flex flex-column gap-4">
+
+            <!-- Card Block: Direct Operations Info -->
+            <div class="filter-panel p-4 border rounded-3 bg-body-tertiary shadow-sm">
+              <h2 class="h5 fw-bold text-body mb-3">Support Desks</h2>
+
+              <div class="mb-3">
+                <p class="eyebrow text-muted mb-1">General & Orders</p>
+                <a href="mailto:[EMAIL_ADDRESS]" class="link-teal fw-semibold">[EMAIL_ADDRESS]</a>
+              </div>
+
+              <div class="mb-3">
+                <p class="eyebrow text-muted mb-1">Corporate Hotline</p>
+                <p class="text-body fw-semibold mb-0">+234 704 777 1345</p>
+              </div>
+
+              <div>
+                <p class="eyebrow text-muted mb-1">Operating Hours</p>
+                <p class="text-body small mb-0">Monday – Friday<br>9:00 AM – 6:00 PM EST</p>
+              </div>
+            </div>
+
+            <!-- Card Block: Retail Pickups Notice -->
+            <div class="filter-panel p-4 border rounded-3 bg-body-tertiary shadow-sm">
+              <h2 class="h5 fw-bold text-body mb-2">HQ Logistics Hub</h2>
+              <p class="text-muted small mb-3">Online order collections and authorized warranty drops only.</p>
+              <p class="text-body small mb-0">
+                100 Innovation Way, Suite 400<br>
+                Tech District<br>
+                Boston, MA 02110
+              </p>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- Column 2: Structural Submission Form -->
+        <div class="col-lg-8">
+          <div class="filter-panel p-4 p-md-5 border rounded-3 bg-body-tertiary shadow-sm">
+            <h2 class="h3 fw-bold text-body mb-2">Send an inquiry</h2>
+            <p class="text-muted small mb-4">Fields marked with an asterisk (*) are required. Our target reply threshold
+              is under 24 business hours.</p>
+
+            <form action="/contact" method="POST" class="needs-validation" novalidate>
+              <div class="row g-3">
+
+                <!-- Input: Full Name -->
+                <div class="col-md-6">
+                  <label for="contactName" class="form-label fw-semibold text-body small">Full Name *</label>
+                  <input type="text" class="form-input-custom form-control" id="contactName" name="name" required
+                    placeholder="John Doe">
+                  <div class="invalid-feedback">Please enter your name.</div>
+                </div>
+
+                <!-- Input: Email Address -->
+                <div class="col-md-6">
+                  <label for="contactEmail" class="form-label fw-semibold text-body small">Email Address *</label>
+                  <input type="email" class="form-input-custom form-control" id="contactEmail" name="email" required
+                    placeholder="johndoe@example.com">
+                  <div class="invalid-feedback">Please provide a valid email structure.</div>
+                </div>
+
+                <!-- Input: Order ID context (Optional Reference) -->
+                <div class="col-md-12">
+                  <label for="contactOrder" class="form-label fw-semibold text-body small">Order Reference Number <span
+                      class="text-muted">(Optional)</span></label>
+                  <input type="text" class="form-input-custom form-control" id="contactOrder" name="order_ref"
+                    placeholder="#VE-10928">
+                </div>
+
+                <!-- Dropdown: Topic Context Classifier -->
+                <div class="col-md-12">
+                  <label for="contactSubject" class="form-label fw-semibold text-body small">Inquiry Subject *</label>
+                  <select class="form-select form-input-custom" id="contactSubject" name="subject" required>
+                    <option value="" selected disabled>Select an option...</option>
+                    <option value="order">Order Status & Delivery tracking</option>
+                    <option value="tech">Product Technical Assistance</option>
+                    <option value="warranty">Warranty, Returns & Damages</option>
+                    <option value="business">Corporate / B2B Wholesales</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a topic framework.</div>
+                </div>
+
+                <!-- Textarea: Message Core Data -->
+                <div class="col-md-12">
+                  <label for="contactMessage" class="form-label fw-semibold text-body small">Message Details *</label>
+                  <textarea class="form-input-custom form-control" id="contactMessage" name="message" rows="5" required
+                    placeholder="Describe your query here..."></textarea>
+                  <div class="invalid-feedback">Please compose your detailed message.</div>
+                </div>
+
+                <!-- Interactive Processing Switch Button -->
+                <div class="col-md-12 pt-2">
+                  <button type="submit" class="btn btn-teal px-4 py-2 fw-bold">Submit Ticket</button>
+                </div>
+
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+
+</body>
+
+{% include 'front/share/footer.html' %}
+
+<!-- Native HTML5 Front-End Validation Script -->
+<script>
+  (() => {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
+
+</html>

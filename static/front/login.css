@@ -1,0 +1,88 @@
+.login-wrapper {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    padding: 60px 0;
+}
+
+.login-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #fff;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .08);
+}
+
+.login-banner {
+    background: linear-gradient(135deg,
+            #0f172a,
+            #1e293b,
+            #0d9488);
+    color: white;
+    padding: 60px;
+}
+
+.login-banner h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.login-banner p {
+    color: rgba(255, 255, 255, .8);
+    margin-bottom: 35px;
+}
+
+.login-features {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.login-features div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-features i {
+    color: #fbbf24;
+}
+
+.login-form-panel {
+    padding: 60px;
+}
+
+.btn-teal {
+    background: #0d9488;
+    border: none;
+    color: #fff;
+}
+
+.btn-teal:hover {
+    background: #0f766e;
+    color: #fff;
+}
+
+.link-teal {
+    color: #0d9488;
+    text-decoration: none;
+}
+
+.link-teal:hover {
+    color: #0f766e;
+}
+
+@media(max-width:992px) {
+
+    .login-card {
+        grid-template-columns: 1fr;
+    }
+
+    .login-banner,
+    .login-form-panel {
+        padding: 40px;
+    }
+}

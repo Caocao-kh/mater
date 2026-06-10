@@ -1,0 +1,262 @@
+/* =========================
+   ROOT
+========================= */
+
+:root {
+    --primary: #0d9488;
+    --secondary: #14b8a6;
+    --dark: #0f172a;
+    --gold: #f59e0b;
+    --white: #ffffff;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.custom-navbar {
+
+    background: rgba(15, 23, 42, .95);
+
+    backdrop-filter: blur(15px);
+
+    transition: all .4s ease;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, .08);
+}
+
+.custom-navbar.scrolled {
+
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, .15);
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.navbar-brand {
+
+    font-family: 'Outfit', sans-serif;
+
+    font-size: 1.7rem;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    color: white !important;
+
+    transition: .4s;
+}
+
+.navbar-brand span {
+
+    color: var(--secondary);
+}
+
+.navbar-brand:hover {
+
+    transform: scale(1.05);
+}
+
+/* =========================
+   NAV LINKS
+========================= */
+
+.nav-link {
+
+    color: rgba(255, 255, 255, .85) !important;
+
+    font-weight: 600;
+
+    margin: 0 8px;
+
+    position: relative;
+
+    transition: .3s;
+}
+
+.nav-link:hover {
+
+    color: white !important;
+}
+
+/* underline animation */
+
+.nav-link::after {
+
+    content: '';
+
+    position: absolute;
+
+    width: 0;
+
+    height: 3px;
+
+    background: var(--secondary);
+
+    left: 50%;
+
+    bottom: -6px;
+
+    transition: .3s;
+
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+
+    width: 80%;
+}
+
+.nav-link.active {
+
+    color: white !important;
+}
+
+/* =========================
+   CART ICON
+========================= */
+
+.nav-icon {
+
+    color: white;
+
+    transition: .3s;
+}
+
+.nav-icon:hover {
+
+    color: var(--secondary);
+
+    transform: translateY(-3px);
+}
+
+.nav-icon i {
+
+    transition: .3s;
+}
+
+.nav-icon:hover i {
+
+    animation: cartBounce .5s;
+}
+
+@keyframes cartBounce {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   BADGE
+========================= */
+
+@keyframes pulseBadge {
+
+    0% {
+        transform:
+            translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%) scale(1.15);
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%) scale(1);
+    }
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn-auth {
+
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+.btn-outline-light:hover {
+
+    transform: translateY(-2px);
+}
+
+.btn-success {
+
+    background:
+        linear-gradient(135deg,
+            var(--primary),
+            var(--secondary));
+
+    border: none;
+}
+
+.btn-success:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 20px rgba(20, 184, 166, .35);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.navbar-toggler {
+
+    box-shadow: none !important;
+}
+
+.navbar-collapse {
+
+    transition: .4s;
+}
+
+/* =========================
+   FADE ANIMATION
+========================= */
+
+.custom-navbar {
+
+    animation: navbarFade .8s ease;
+}
+
+@keyframes navbarFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-30px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
