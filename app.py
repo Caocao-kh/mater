@@ -211,8 +211,23 @@ def telegram_order():
     if not cart_items:
         return redirect(url_for('cart'))
 
+    # Extract user input details from the form
+    username = request.form.get('username', 'N/A')
+    address = request.form.get('address', 'N/A')
+    city = request.form.get('city', 'N/A')
+    phone = request.form.get('phone', 'N/A')
+    email = request.form.get('email', 'N/A')
+
     # 2. Build a cleanly formatted text message for Telegram
     message = "🛍️ **NEW ORDER RECEIVED** 🛍️\n\n"
+    
+    message += "👤 **Customer Information:**\n"
+    message += f"- **Name:** {username}\n"
+    message += f"- **Email:** {email}\n"
+    message += f"- **Phone:** {phone}\n"
+    message += f"- **Address:** {address}\n"
+    message += f"- **City:** {city}\n\n"
+    
     message += "📦 **Items:**\n"
     
     for item in cart_items:

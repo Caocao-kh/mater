@@ -146,13 +146,12 @@
               <strong class="h4 fw-bold text-teal mb-0">${{ "%.2f"|format(total) }}</strong>
             </div>
 
-            <form action="{{ url_for('telegram_order') }}" method="POST">
-              <button type="submit"
-                class="btn btn-teal btn-lg w-100 mt-3 py-2.5 fw-bold {% if not cart_items %}disabled{% endif %}" {% if
-                not cart_items %}disabled{% endif %}>
-                Proceed to checkout
-              </button>
-            </form>
+            <button type="button"
+              class="btn btn-teal btn-lg w-100 mt-3 py-2.5 fw-bold {% if not cart_items %}disabled{% endif %}"
+              {% if not cart_items %}disabled{% endif %}
+              data-bs-toggle="modal" data-bs-target="#checkoutModal">
+              Proceed to checkout
+            </button>
             <a class="btn btn-outline-secondary w-100 mt-2 py-2 small" href="/products">Add more products</a>
 
             <div class="secure-note mt-4 border-top pt-3 small text-muted">
@@ -169,6 +168,53 @@
   {% include 'front/share/footer.html' %}
 
 
+  <!-- Checkout Info Modal -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg bg-white">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h3 class="modal-title fw-bold text-dark fs-4 pt-2" id="checkoutModalLabel">Delivery Information</h3>
+          <button type="button" class="btn-close me-2 mt-2" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ url_for('telegram_order') }}" method="POST">
+          <div class="modal-body py-3">
+            <p class="text-muted small mb-3">Please fill in your delivery details to complete your order and send it to Telegram.</p>
+            
+            <div class="mb-3">
+              <label for="modalUsername" class="form-label fw-semibold text-dark small">Username / Full Name</label>
+              <input type="text" class="form-control form-input-custom" id="modalUsername" name="username" required placeholder="John Doe">
+            </div>
+            
+            <div class="mb-3">
+              <label for="modalAddress" class="form-label fw-semibold text-dark small">Address</label>
+              <input type="text" class="form-control form-input-custom" id="modalAddress" name="address" required placeholder="123 Main Street">
+            </div>
+
+            <div class="mb-3">
+              <label for="modalCity" class="form-label fw-semibold text-dark small">City</label>
+              <input type="text" class="form-control form-input-custom" id="modalCity" name="city" required placeholder="Phnom Penh">
+            </div>
+
+            <div class="row g-2 mb-2">
+              <div class="col-md-6 mb-2 mb-md-0">
+                <label for="modalPhone" class="form-label fw-semibold text-dark small">Phone Number</label>
+                <input type="tel" class="form-control form-input-custom" id="modalPhone" name="phone" required placeholder="+855 12 345 678">
+              </div>
+              <div class="col-md-6">
+                <label for="modalEmail" class="form-label fw-semibold text-dark small">Email Address</label>
+                <input type="email" class="form-control form-input-custom" id="modalEmail" name="email" required placeholder="john@example.com">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-top-0 pt-0 pb-4">
+            <button type="button" class="btn btn-outline-secondary px-4 fw-bold" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-teal px-4 fw-bold" style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; border: none;">Submit Order</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Order Success Modal (shown after Telegram push succeeds) -->
   <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -183,7 +229,8 @@
               animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
             ">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
               </svg>
             </div>
           </div>
@@ -192,8 +239,7 @@
             Your order has been successfully placed and sent via
             <strong class="text-dark">Telegram</strong>. We will process it shortly!
           </p>
-          <a href="/products"
-            class="btn btn-lg w-100 fw-bold py-2"
+          <a href="/products" class="btn btn-lg w-100 fw-bold py-2"
             style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; border: none;">
             Continue Shopping
           </a>
@@ -204,8 +250,15 @@
 
   <style>
     @keyframes popIn {
-      0%   { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1);   opacity: 1; }
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
   </style>
 
